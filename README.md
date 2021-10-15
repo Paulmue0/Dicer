@@ -1,2 +1,2 @@
 # Dicer
-Visualizes A Rubis-Cube in console
+Visualizes A Rubix-Cube in console
