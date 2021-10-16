@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #include "main.h"
 #include "../ui/ui.c"
 #include "../cube/side.c"
-
-
-
 
 
 // size of side
@@ -13,7 +11,7 @@
 int size_x, size_y = 0;
 
 int main(){
-
+	ClearScreen();
 	init_side_size();
 
 	ClearScreen();
@@ -34,9 +32,3 @@ int main(){
 	return 0;
 
 }
-
-
-
-
-
-

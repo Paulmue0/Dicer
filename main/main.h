@@ -9,7 +9,6 @@
     #define PLATFORM_NAME_USED "windows" // Windows	
 #elif defined(unix)
     #define PLATFORM_NAME_USED "unix" // unix
-    #define clrscr() printf("\e[1;1H\e[2J")
 #else
     #define PLATFORM_NAME_USED NULL
 #endif

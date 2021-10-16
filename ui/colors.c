@@ -50,10 +50,6 @@ void print_color_block_windows(char color){
     GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
     saved_attributes = consoleInfo.wAttributes;
 
-    
-
-    
-	
 	if(color == 'r'){
 		SetConsoleTextAttribute(hConsole, BACKGROUND_RED);
 	}
@@ -85,23 +81,21 @@ int check_valid_color(char color){
 	if(color == 'r'){
 		return 1;
 	}
-	if(color == 'w'){
+	else if(color == 'w'){
 		return 1;
 	}
-	if(color == 'b'){
+	else if(color == 'b'){
 		return 1;
 	}
-	if(color == 'y'){
+	else if(color == 'y'){
 		return 1;
 	}
-	if(color == 'o'){
+	else if(color == 'o'){
 		return 1;
 	}
-	if(color == 'g'){
+	else if(color == 'g'){
 		return 1;
 	}
 
-
-	return 0;
-	
+	return 0;	
 }
