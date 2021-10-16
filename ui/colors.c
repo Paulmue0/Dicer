@@ -1,7 +1,11 @@
 #include "colors.h"
 #include "../main/main.h"
+
+#ifdef _WIN32
 #include <windows.h>
-#include <stdio.h>
+#endif
+
+
 
 
 
@@ -28,9 +32,9 @@ void print_color_block_unix(char color){
 
 void print_color_block(char color){
 	#ifdef PLATFORM_NAME_USED
-	if(PLATFORM_NAME_USED == 1)
+	if(PLATFORM_NAME_USED == "unix")
 		print_color_block_unix(color);
-	else if (PLATFORM_NAME_USED == 0)
+	else if (PLATFORM_NAME_USED == "windows")
 		print_color_block_windows(color);
 	#else
 	printf("Error... cannot identify OS.");

@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 #include "main.h"
 #include "../ui/ui.c"
 #include "../cube/side.c"
+
+
+
 
 
 // size of side
@@ -14,6 +16,7 @@ int main(){
 
 	init_side_size();
 
+	ClearScreen();
 	printf("Enter colors for side %d\n", 1);
 	char * side_1 = init_single_side();
 	char ** sides_2_to_5 = init_multiple_sides();

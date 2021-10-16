@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "stdlib.h": "c",
+        "side.h": "c",
+        "conio.h": "c"
+    }
+}
