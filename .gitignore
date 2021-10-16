@@ -1,0 +1,4 @@
+# ignores .DS_Store created by macos
+.DS_Store
+#ignores compiled programs
+*.o
