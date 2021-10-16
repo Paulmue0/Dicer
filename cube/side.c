@@ -1,5 +1,5 @@
 #include "side.h"
-#include "../main.h"
+#include "../main/main.h"
 
 void init_side_size(){
 	int check = 0;
