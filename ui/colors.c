@@ -2,7 +2,7 @@
 
 void print_color_block(char color){
 	if(color == 'r'){
-		printf("\033[101m  \033[0m");
+		printf("\033[0101m  \033[0m");
 	}
 	else if(color == 'w'){
 		printf("\033[107m  \033[0m");

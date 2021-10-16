@@ -1,69 +1,9 @@
 #include "ui.h"
-#include "../main.h"
 #include "colors.c"
 
-
-
-extern int size_x;
-extern int size_y;
-
-
-void init_cube_size(){
-	int check = 0;
-
-	printf("Please Enter the size of the cube...\n");
-	printf("x:\n");
-	check += scanf ("%d",&size_x);
-
-
-	printf("y:\n");
-	check += scanf ("%d",&size_y);
-
-	if(check != 2 ){
-		printf("Input not accepted... please restart the program...\n");
-		exit(0);
-	}
-
-	else if(size_x < 1 || size_x > MAX_SIZE_X || size_x < 1 || size_y > MAX_SIZE_Y){
-		printf("The size of the cube is to big...\n");
-		printf("Maximal size is %dx%d\n", MAX_SIZE_X, MAX_SIZE_Y);
-		init_cube_size();
-	}
-
-}
-
-char * init_single_side(){
-	
-	char *cube = malloc( sizeof(char) * (size_x*size_y) );
-
-	for(int i = 0; i < size_x*size_y; i++){
-		int check = 0;
-		printf("Please Enter the color...\n");
-		printf("color:\n");
-		check += scanf(" %c", &cube[i]);
-
-		
-
-
-		if(check != 1 ){
-			printf("Input not accepted... please restart the program...\n");
-			exit(0);
-		}
-
-		else if(!check_valid_color(cube[i])){
-
-			printf("%c is not a valid color.\n", cube[i]);
-			printf("Try 'r', 'w', 'y', 'b', 'o', 'g'...");
-			i = -1;
-		}
-	}
-	return cube;
-
-}
-
-void indent_cube(int x){
+void indent_side(int x){
 	while(x){
-		printf("   ");
+		printf("  ");
 		x--;
 	}
 	printf(" ");
@@ -71,56 +11,59 @@ void indent_cube(int x){
 }
 
 void print_top_or_bottom_row(int x){
-	indent_cube(x);
+	indent_side(x);
 	for(int i = 0; i < x; i++){
 		printf("##");
 	}
-	printf("\n");
+	printf("##\n");
 }
 
 void print_middle_row(int x){
 	for(int i = 0; i < 4*x; i++){
-		printf("###");
+		printf("##");
 	}
 	printf("#####\n");
 }
 
-void print_short_side(int x, int y, char *cube){
+void print_short_side(int x, int y, char *side){
 	int tmp_cnt = 0;
 
 	for(int i = 0; i < y; i++){
-		indent_cube(x);
+		indent_side(x);
 		printf("#");
 		for(int j = 0; j < x; j++){
-			print_color_block(cube[tmp_cnt]);
+			print_color_block(side[tmp_cnt]);
 			tmp_cnt++;
 		}
 		printf("#\n");
 	}
 }
 
-void print_long_side(int x, int y){
+void print_long_side(int x, int y, char **sides){
+	int tmp_cnt;
+
 	for(int i = 0; i < y; i++){
 		printf("#");
-		for(int j = 0; j < 4*x; j++){
-			printf("[x]");
+		tmp_cnt = 0;
+		for(int side = 0; side < 4; side++){
+			for(int j = 0; j < x; j++){
+			print_color_block(sides[side][j]);
+		}
+		printf("#");
 
-			if(((j+1) % x) == 0){
-				printf("#");
-			}
 		}
 		printf("\n");
 	}
 }
 
-void print_cube(int x, int y, char *cube){
+void print_cube(int x, int y, char *side_1, char **sides_2_to_5, char *side_6){
 	
 	
 	print_top_or_bottom_row(x);
-	print_short_side(x, y, cube);
+	print_short_side(x, y, side_1);
 	print_middle_row(x);
-	print_long_side(x, y);
+	print_long_side(x, y, sides_2_to_5);
 	print_middle_row(x);
-	print_short_side(x, y, cube);
+	print_short_side(x, y, side_6);
 	print_top_or_bottom_row(x);
 }
