@@ -2,3 +2,5 @@
 .DS_Store
 #ignores compiled programs
 *.o
+#ignores .out files
+*.out

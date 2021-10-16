@@ -1,5 +1,8 @@
 #include "ui.h"
 #include "../main.h"
+#include "colors.c"
+
+
 
 extern int size_x;
 extern int size_y;
@@ -47,8 +50,10 @@ char * init_single_side(){
 			exit(0);
 		}
 
-		else if(cube[i] != 'r'){
-			printf("%c is not a valid color. Try 'r'\n", cube[i]);
+		else if(!check_valid_color(cube[i])){
+
+			printf("%c is not a valid color.\n", cube[i]);
+			printf("Try 'r', 'w', 'y', 'b', 'o', 'g'...");
 			i = -1;
 		}
 	}
@@ -70,7 +75,7 @@ void print_top_or_bottom_row(int x){
 	for(int i = 0; i < x; i++){
 		printf("###");
 	}
-	printf("##\n");
+	printf("\n");
 }
 
 void print_middle_row(x){
@@ -81,11 +86,14 @@ void print_middle_row(x){
 }
 
 void print_short_side(int x, int y, char *cube){
+	int tmp_cnt = 0;
+
 	for(int i = 0; i < y; i++){
 		indent_cube(x);
 		printf("#");
 		for(int j = 0; j < x; j++){
-			printf("[%c]", cube[j]);
+			print_color_block(cube[tmp_cnt]);
+			tmp_cnt++;
 		}
 		printf("#\n");
 	}
