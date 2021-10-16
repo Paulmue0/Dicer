@@ -21,6 +21,9 @@ int main(){
 
 	print_cube(size_x, size_y, side_1, sides_2_to_5, side_3);
 
+	puts("Press any key to exit...");
+	getchar();
+
 	return 0;
 
 }
