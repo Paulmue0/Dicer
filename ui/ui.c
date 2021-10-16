@@ -73,12 +73,12 @@ void indent_cube(int x){
 void print_top_or_bottom_row(int x){
 	indent_cube(x);
 	for(int i = 0; i < x; i++){
-		printf("###");
+		printf("##");
 	}
 	printf("\n");
 }
 
-void print_middle_row(x){
+void print_middle_row(int x){
 	for(int i = 0; i < 4*x; i++){
 		printf("###");
 	}
