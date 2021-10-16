@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #include "main.h"
 #include "../ui/ui.c"
 #include "../cube/side.c"
@@ -10,7 +11,7 @@
 int size_x, size_y = 0;
 
 int main(){
-		
+
 	init_side_size();
 
 	printf("Enter colors for side %d\n", 1);
@@ -21,8 +22,11 @@ int main(){
 
 	print_cube(size_x, size_y, side_1, sides_2_to_5, side_3);
 
-	puts("Press any key to exit...");
-	getchar();
+	 while(1){
+        printf("Press any Key to exit :)\n");
+        getch();
+        break;
+    }
 
 	return 0;
 

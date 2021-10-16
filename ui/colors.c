@@ -1,6 +1,11 @@
 #include "colors.h"
+#include "../main/main.h"
+#include <windows.h>
+#include <stdio.h>
 
-void print_color_block(char color){
+
+
+void print_color_block_unix(char color){
 	if(color == 'r'){
 		printf("\033[0101m  \033[0m");
 	}
@@ -20,6 +25,57 @@ void print_color_block(char color){
 		printf("\033[102m  \033[0m");
 	}
 }
+
+void print_color_block(char color){
+	#ifdef PLATFORM_NAME_USED
+	if(PLATFORM_NAME_USED == 1)
+		print_color_block_unix(color);
+	else if (PLATFORM_NAME_USED == 0)
+		print_color_block_windows(color);
+	#else
+	printf("Error... cannot identify OS.");
+	#endif
+}
+
+void print_color_block_windows(char color){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Save current attributes */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    
+
+    
+	
+	if(color == 'r'){
+		SetConsoleTextAttribute(hConsole, BACKGROUND_RED);
+	}
+	else if(color == 'w'){
+		SetConsoleTextAttribute(hConsole, (BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED));
+	}
+	else if(color == 'b'){
+		SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE);
+	}
+	else if(color == 'y'){
+		SetConsoleTextAttribute(hConsole, (BACKGROUND_GREEN | BACKGROUND_RED ));
+	}
+	else if(color == 'o'){
+		SetConsoleTextAttribute(hConsole, ((12 & 0x0F) << 4));
+	}
+	else if(color == 'g'){
+		SetConsoleTextAttribute(hConsole, BACKGROUND_GREEN);
+	}
+	
+	/* Print block*/
+	printf("  ");
+	
+	/* Restore original attributes */
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+}
+
 
 int check_valid_color(char color){
 	if(color == 'r'){
