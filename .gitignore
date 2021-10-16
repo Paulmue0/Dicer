@@ -4,3 +4,7 @@
 *.o
 #ignores .out files
 *.out
+#ignores .exe files
+*.exe
+
+
