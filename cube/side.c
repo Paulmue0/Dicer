@@ -4,7 +4,7 @@
 
 void init_side_size(){
 	int check = 0;
-	printf("Please Enter the size of the side...\n");
+	printf("Please Enter the size of the cube...\n");
 	printf("x:\n");
 	check += scanf ("%d",&size_x);
 
